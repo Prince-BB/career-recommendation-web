@@ -8,11 +8,13 @@ import {
   FileText,
   Calculator,
   GraduationCap,
+  Flame,
+  Map,
   MapPin,
   IndianRupee,
   Award,
-  ExternalLink,
-  Flame,
+  ExternalLink, 
+  Menu,
 } from "lucide-react"
 import type { Stream } from "@/lib/cutoff-data"
 
@@ -140,20 +142,29 @@ export default function CutoffPage() {
   return (
     <div className="page-wrapper">
       <header className="header">
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Link href="/" className="header-logo" style={{ textDecoration: "none" }}>
-            <Compass />
-            <span>CareerPath</span>
-          </Link>
+        <div className="header-inner">
+          <div className="header-left">
+            <details className="mobile-nav">
+              <summary className="mobile-nav-btn" aria-label="Open navigation">
+                <Menu />
+              </summary>
+              <div className="mobile-nav-panel">
+                <Link href="/" className="mobile-nav-link">Assessment</Link>
+                <Link href="/career" className="mobile-nav-link">Career</Link>
+                <Link href="/exams" className="mobile-nav-link">Exams</Link>
+                <Link href="/cutoff" className="mobile-nav-link mobile-nav-link--active">Cutoff</Link>
+                <Link href="/companies" className="mobile-nav-link">Companies</Link>
+                <Link href="/internships" className="mobile-nav-link">Internships</Link>
+                <Link href="/roadmap" className="mobile-nav-link">Roadmap</Link>
+                <Link href="/trending" className="mobile-nav-link">Trending</Link>
+              </div>
+            </details>
+
+            <Link href="/" className="header-logo" style={{ textDecoration: "none" }}>
+              <Compass />
+              <span>CareerPath</span>
+            </Link>
+          </div>
           <nav className="header-nav">
             <Link href="/" className="nav-link">
               Assessment
@@ -169,6 +180,18 @@ export default function CutoffPage() {
             <Link href="/trending" className="nav-link">
               <Flame />
               Trending
+            </Link>
+            <Link href="/internships" className="nav-link">
+              <GraduationCap />
+              Internships
+            </Link>
+            <Link href="/companies" className="nav-link">
+              <Briefcase />
+              Companies
+            </Link>
+            <Link href="/roadmap" className="nav-link">
+              <Map />
+              Roadmap
             </Link>
             <span className="nav-link nav-link--active">
               <Calculator />

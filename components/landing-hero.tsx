@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Compass, BookOpen, Target, Briefcase, FileText, Calculator, Flame } from "lucide-react"
+import { ArrowRight, Compass, BookOpen, Target, Briefcase, FileText, Calculator, Flame, GraduationCap, Map, Menu } from "lucide-react"
 
 interface LandingHeroProps {
   onStart: () => void
@@ -11,11 +11,30 @@ export function LandingHero({ onStart }: LandingHeroProps) {
   return (
     <div className="page-wrapper">
       <header className="header">
-        <div className="header-logo">
-          <Compass />
-          <span>CareerPath</span>
-        </div>
-        <div className="header-nav">
+        <div className="header-inner">
+          <div className="header-left">
+            <details className="mobile-nav">
+              <summary className="mobile-nav-btn" aria-label="Open navigation">
+                <Menu />
+              </summary>
+              <div className="mobile-nav-panel">
+                <Link href="/career" className="mobile-nav-link">Career</Link>
+                <Link href="/exams" className="mobile-nav-link">Exams</Link>
+                <Link href="/cutoff" className="mobile-nav-link">Cutoff</Link>
+                <Link href="/companies" className="mobile-nav-link">Companies</Link>
+                <Link href="/internships" className="mobile-nav-link">Internships</Link>
+                <Link href="/roadmap" className="mobile-nav-link">Roadmap</Link>
+                <Link href="/trending" className="mobile-nav-link">Trending</Link>
+              </div>
+            </details>
+
+            <div className="header-logo">
+              <Compass />
+              <span>CareerPath</span>
+            </div>
+          </div>
+
+          <div className="header-nav">
           <Link href="/career" className="nav-link">
             <Briefcase />
             Career
@@ -28,15 +47,28 @@ export function LandingHero({ onStart }: LandingHeroProps) {
             <Calculator />
             Cutoff
           </Link>
+          <Link href="/companies" className="nav-link">
+            <Briefcase />
+            Companies
+          </Link>
+          <Link href="/internships" className="nav-link">
+            <GraduationCap />
+            Internships
+          </Link>
+          <Link href="/roadmap" className="nav-link">
+            <Map />
+            Roadmap
+          </Link>
           <Link href="/trending" className="nav-link">
             <Flame />
             Trending
           </Link>
           <button onClick={onStart} className="btn btn-primary btn-sm">
-            Get Started
+            Get Started 
           </button>
+          </div>
         </div>
-      </header>git push -u origin main
+      </header>
 
       <main className="hero-section">
         <div>
@@ -91,7 +123,6 @@ export function LandingHero({ onStart }: LandingHeroProps) {
           </div>
         </div>
       </main>
-
       <footer className="footer">
         Built to help you find your perfect career path.
       </footer>

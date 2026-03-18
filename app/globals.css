@@ -1125,6 +1125,7 @@ input {
   color: var(--color-text-muted);
   margin-top: 4px;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -1826,4 +1827,975 @@ input {
 .trending-link svg {
   width: 14px;
   height: 14px;
+}
+/* ============================================ */
+/* Companies Page                               */
+/* ============================================ */
+
+.company-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+.company-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.company-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(800px 160px at 20% 0%, rgba(79, 70, 229, 0.12), transparent 60%),
+    radial-gradient(800px 160px at 80% 0%, rgba(67, 56, 202, 0.10), transparent 60%);
+  transition: opacity 0.18s ease;
+}
+
+.company-card:hover::before {
+  opacity: 1;
+}
+
+.company-card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.company-card-header h3 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.company-name {
+  /* Similar gradient pattern, different accent colors */
+  background: linear-gradient(90deg, #0ea5e9, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2px;
+}
+
+.company-card-header p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.company-card-body {
+  padding: 16px 20px;
+}
+
+.company-detail {
+  margin-bottom: 10px;
+}
+
+.company-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.company-value {
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.company-skills {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.company-skill-tag {
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 12px;
+  background: var(--color-muted-bg);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.companies-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .companies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .companies-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.companies-search {
+  margin-bottom: 16px;
+}
+
+.company-link {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.company-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.company-link:hover {
+  text-decoration: underline;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Mobile nav (hamburger → panel) */
+.mobile-nav {
+  display: none;
+  position: relative;
+}
+
+.mobile-nav-btn {
+  list-style: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+}
+
+.mobile-nav-btn::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-nav-btn:hover {
+  background: var(--color-muted-bg);
+}
+
+.mobile-nav-btn svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+}
+
+.mobile-nav-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 220px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.14);
+  padding: 10px;
+  z-index: 60;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 10px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.mobile-nav-link:hover {
+  background: var(--color-muted-bg);
+}
+
+.mobile-nav-link--active {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+@media (max-width: 900px) {
+  .header-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: block;
+  }
+}
+
+/* ============================================ */
+/* Company Details Overlay                      */
+/* ============================================ */
+.company-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.55);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 18px;
+}
+
+.company-overlay-panel {
+  width: 100%;
+  max-width: 980px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.35);
+  display: flex;
+  flex-direction: column;
+}
+
+.company-overlay-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(180deg, var(--color-primary-light), #ffffff);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.company-overlay-kicker {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+}
+
+.company-overlay-title {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.15;
+}
+
+.company-overlay-subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.company-overlay-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-overlay-close:hover {
+  background: var(--color-muted-bg);
+}
+
+.company-overlay-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.company-overlay-content {
+  padding: 18px 20px 20px;
+  overflow: auto;
+}
+
+.company-overlay-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .company-overlay-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.company-visual-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #ffffff;
+  padding: 14px;
+}
+
+.company-visual-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.company-visual-title svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-primary);
+}
+
+.company-visual-value {
+  margin-top: 10px;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.company-visual-value--text {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.company-visual-note {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.salary-bar {
+  margin-top: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-muted-bg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.salary-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
+  width: 0%;
+  transition: width 180ms ease;
+}
+
+/* Width buckets (0..100 in steps of 5) */
+.salary-w-0 { width: 0%; }
+.salary-w-5 { width: 5%; }
+.salary-w-10 { width: 10%; }
+.salary-w-15 { width: 15%; }
+.salary-w-20 { width: 20%; }
+.salary-w-25 { width: 25%; }
+.salary-w-30 { width: 30%; }
+.salary-w-35 { width: 35%; }
+.salary-w-40 { width: 40%; }
+.salary-w-45 { width: 45%; }
+.salary-w-50 { width: 50%; }
+.salary-w-55 { width: 55%; }
+.salary-w-60 { width: 60%; }
+.salary-w-65 { width: 65%; }
+.salary-w-70 { width: 70%; }
+.salary-w-75 { width: 75%; }
+.salary-w-80 { width: 80%; }
+.salary-w-85 { width: 85%; }
+.salary-w-90 { width: 90%; }
+.salary-w-95 { width: 95%; }
+.salary-w-100 { width: 100%; }
+
+.company-overlay-section {
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 14px;
+}
+
+.company-overlay-section-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.company-overlay-section-text {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.company-overlay-list {
+  margin-top: 10px;
+  margin-left: 18px;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.company-overlay-list li {
+  list-style: disc;
+  margin-bottom: 6px;
+}
+
+.company-overlay-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ============================================ */
+/* Internships Page                             */
+/* ============================================ */
+.internships-toolbar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .internships-toolbar {
+    grid-template-columns: 220px 320px 1fr;
+    align-items: end;
+  }
+}
+
+.internships-select {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.internships-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.internships-dropdown {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  font-size: 14px;
+  color: var(--color-text);
+  font-weight: 700;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--color-text-muted) 50%),
+    linear-gradient(135deg, var(--color-text-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.internships-dropdown:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.internships-dropdown:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.internships-dropdown--placeholder {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.internships-search {
+  margin-bottom: 0;
+}
+
+/* Make internships search look more premium */
+.internships-search {
+  background: var(--color-card);
+  border: 1px solid var(--color-input-border);
+  border-radius: 999px;
+  padding: 2px;
+}
+
+.internships-search svg {
+  left: 14px;
+  color: var(--color-primary);
+  opacity: 0.9;
+}
+
+.internships-search .search-input {
+  border: none;
+  background: transparent;
+  padding: 12px 16px 12px 42px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.internships-search .search-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.internships-search:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.16);
+}
+
+.internships-suggest {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.12);
+  padding: 12px;
+  z-index: 20;
+}
+
+.internships-suggest-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.internships-suggest-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.internships-suggest-chip {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-muted-bg);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.internships-suggest-chip:hover {
+  background: var(--color-primary-light);
+  border-color: rgba(79, 70, 229, 0.35);
+}
+
+.internships-suggest-chip--clear {
+  background: #fff;
+  color: var(--color-primary);
+  border-color: rgba(79, 70, 229, 0.25);
+}
+
+.internships-suggest-chip--clear:hover {
+  background: var(--color-primary-light);
+}
+
+/* ============================================ */
+/* Roadmap Page                                 */
+/* ============================================ */
+.roadmap-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .roadmap-toolbar {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.roadmap-search {
+  flex: 1;
+}
+
+.roadmap-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .roadmap-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.roadmap-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(2, 6, 23, 0.06);
+}
+
+.roadmap-card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(180deg, var(--color-primary-light), #ffffff);
+}
+
+.roadmap-domain {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+}
+
+.roadmap-title {
+  margin-top: 6px;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.roadmap-desc {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.roadmap-card-body {
+  padding: 16px 20px 20px;
+}
+
+.roadmap-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.roadmap-step {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #ffffff;
+  padding: 12px;
+}
+
+.roadmap-step-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.roadmap-step-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-primary-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.roadmap-step-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+}
+
+.roadmap-step-index {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.roadmap-step-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.roadmap-step-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roadmap-chip {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-muted-bg);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.roadmap-links {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.roadmap-videos {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roadmap-video {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-card);
+  color: var(--color-text);
+}
+
+.roadmap-video:hover {
+  background: var(--color-muted-bg);
+}
+
+.roadmap-video-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(79, 70, 229, 0.25);
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.roadmap-video-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #ff0033;
+}
+
+.roadmap-video-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.roadmap-video svg:last-child {
+  width: 14px;
+  height: 14px;
+  color: var(--color-text-muted);
+}
+
+.roadmap-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.roadmap-link:hover {
+  background: var(--color-muted-bg);
+}
+
+.roadmap-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.internships-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .internships-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.internship-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  overflow: hidden;
+}
+
+.internship-card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(180deg, var(--color-primary-light), #ffffff);
+}
+
+.internship-card-header h3 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.internship-card-header p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.internship-card-body {
+  padding: 16px 20px;
+}
+
+.internship-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.internship-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.internship-meta svg {
+  width: 14px;
+  height: 14px;
+  color: var(--color-primary);
+}
+
+.internship-skills {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.internship-tag {
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-muted-bg);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.internship-links {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.internship-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.internship-link:hover {
+  background: var(--color-muted-bg);
+}
+
+.internship-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.internship-notes {
+  margin-top: 12px;
+  margin-left: 18px;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.internship-notes li {
+  list-style: disc;
+  margin-bottom: 6px;
+}
+
+.internships-footer {
+  margin-top: 48px;
 }
