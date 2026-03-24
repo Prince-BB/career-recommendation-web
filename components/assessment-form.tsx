@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ArrowLeft, ArrowRight, Compass } from "lucide-react"
 import { questions, likertOptions, calculateResults } from "@/lib/assessment-data"
 import type { CareerDomain } from "@/lib/assessment-data"
@@ -17,6 +17,10 @@ export function AssessmentForm({ onComplete, onBack }: AssessmentFormProps) {
   const [page, setPage] = useState<0 | 1>(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [page])
+
   const totalQuestions = questions.length
   const perPage = 10
   const startIdx = page * perPage
@@ -32,8 +36,14 @@ export function AssessmentForm({ onComplete, onBack }: AssessmentFormProps) {
 
   function handleNext() {
     if (!pageComplete) return
-    if (page === 0) setPage(1)
-    else onComplete(calculateResults(answers))
+
+    if (page === 0) {
+      setPage(1)
+    } else {
+      // ✅ FIX: Scroll to top before showing results
+      window.scrollTo({ top: 0, behavior: "smooth" })
+      onComplete(calculateResults(answers))
+    }
   }
 
   function handlePrevious() {
@@ -55,6 +65,7 @@ export function AssessmentForm({ onComplete, onBack }: AssessmentFormProps) {
 
       <main className="main-content">
         <div style={{ width: "100%", maxWidth: 760 }}>
+          
           {/* Progress */}
           <div style={{ marginBottom: 32 }}>
             <div className="progress-info">
@@ -71,7 +82,7 @@ export function AssessmentForm({ onComplete, onBack }: AssessmentFormProps) {
             </div>
           </div>
 
-          {/* Questions (10 per page) */}
+          {/* Questions */}
           <div className="assessment-questions">
             {pageQuestions.map((q, idx) => {
               const qNumber = startIdx + idx + 1
@@ -79,15 +90,17 @@ export function AssessmentForm({ onComplete, onBack }: AssessmentFormProps) {
                 <div key={q.id} className="card">
                   <div className="card-header">
                     <div className="card-description">
-                      Question {qNumber} &mdash; {q.domain}
+                      Question {qNumber} — {q.domain}
                     </div>
                     <h2 className="card-title">{q.text}</h2>
                   </div>
+
                   <div className="card-content">
                     <div className="radio-group">
                       {likertOptions.map((option) => {
                         const inputId = `q${q.id}-opt${option.value}`
                         const isSelected = answers[q.id] === option.value
+
                         return (
                           <label
                             key={option.value}
@@ -123,6 +136,7 @@ export function AssessmentForm({ onComplete, onBack }: AssessmentFormProps) {
               <ArrowLeft />
               Previous
             </button>
+
             <button
               className="btn btn-primary"
               onClick={handleNext}
@@ -132,6 +146,7 @@ export function AssessmentForm({ onComplete, onBack }: AssessmentFormProps) {
               <ArrowRight />
             </button>
           </div>
+
         </div>
       </main>
     </div>
